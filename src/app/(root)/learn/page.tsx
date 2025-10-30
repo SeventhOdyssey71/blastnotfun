@@ -1,8 +1,8 @@
 "use client"
 
-import { Rocket, Compass, Gem, ArrowRight } from "lucide-react"
+import { ArrowRight, Compass, Gem, Rocket } from "lucide-react"
 import Link from "next/link"
-import { type LucideIcon } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 
 export default function LearnPage() {
   const learningPaths = [
@@ -52,22 +52,20 @@ export default function LearnPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Background gradient effects */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-[15%] left-[5%] w-96 h-96 rounded-full bg-destructive/20 blur-3xl" />
         <div className="absolute top-[60%] right-[10%] w-[500px] h-[500px] rounded-full bg-primary/15 blur-3xl" />
       </div>
 
-      {/* Main Content */}
       <main className="relative z-10 container mx-auto py-16 sm:py-24">
-        <div className="text-center max-w-6xl mx-auto">
+        <header className="text-center max-w-6xl mx-auto">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight font-mono">
             Welcome to the <span className="text-destructive">BLAST ACADEMY</span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             From complete beginner to professional trader, our comprehensive courses cover everything from memecoin basics to advanced DeFi strategies. Build, trade, and thrive in the Blast ecosystem.
           </p>
-        </div>
+        </header>
 
         <div className="mt-16 max-w-6xl mx-auto">
           <div className="grid gap-6">
@@ -82,18 +80,24 @@ export default function LearnPage() {
 }
 
 interface LearningPathCardProps {
-  icon: LucideIcon;
-  title: string;
-  level: string;
-  duration: string;
-  description: string;
-  href: string;
-  cta: string;
-  modules: number;
-  lessons: number;
-  categories: string[];
-  bgColor: string;
-  iconBg: string;
+  readonly icon: LucideIcon
+  readonly title: string
+  readonly level: string
+  readonly duration: string
+  readonly description: string
+  readonly href: string
+  readonly cta: string
+  readonly modules: number
+  readonly lessons: number
+  readonly categories: readonly string[]
+  readonly bgColor: string
+  readonly iconBg: string
+}
+
+const getColorClasses = (bgColor: string): string => {
+  if (bgColor.includes('orange')) return 'bg-orange-600'
+  if (bgColor.includes('blue')) return 'bg-blue-600' 
+  return 'bg-red-600'
 }
 
 function LearningPathCard({ 
@@ -104,17 +108,11 @@ function LearningPathCard({
   categories,
   bgColor
 }: LearningPathCardProps) {
-  const getColorClasses = (bgColor: string) => {
-    if (bgColor.includes('orange')) return 'bg-orange-600'
-    if (bgColor.includes('blue')) return 'bg-blue-600' 
-    return 'bg-red-600'
-  }
 
   return (
     <Link href={href} className="group block">
       <div className="bg-card border rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1">
         <div className="flex h-64">
-          {/* Course Image/Left Side */}
           <div className="p-6">
             <div className="relative w-80 h-52 rounded-xl overflow-hidden">
               <div className={`absolute inset-0 ${getColorClasses(bgColor)}`} />
@@ -125,8 +123,6 @@ function LearningPathCard({
               />
             </div>
           </div>
-
-          {/* Course Content/Right Side */}
           <div className="flex-1 p-6 flex flex-col justify-between">
             <div className="space-y-4">
               <h3 className="text-2xl font-bold font-mono group-hover:text-destructive transition-colors">
@@ -137,8 +133,7 @@ function LearningPathCard({
               </p>
             </div>
 
-            {/* Categories and CTA */}
-            <div className="flex items-center justify-between">
+            <footer className="flex items-center justify-between">
               <div className="flex gap-3">
                 {categories.map((category, index) => (
                   <span 
@@ -153,7 +148,7 @@ function LearningPathCard({
               <button className="bg-primary text-primary-foreground font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:bg-primary/90 group-hover:bg-destructive group-hover:text-white flex items-center">
                 <ArrowRight className="w-5 h-5" />
               </button>
-            </div>
+            </footer>
           </div>
         </div>
       </div>
