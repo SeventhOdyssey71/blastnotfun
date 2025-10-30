@@ -13,15 +13,15 @@ export default function PathPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Back Button */}
-      <div className="border-b bg-background/95 backdrop-blur-xl">
+      {/* Navigation */}
+      <div className="border-b bg-background/95 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4">
           <Link
             href="/learn"
-            className="inline-flex items-center space-x-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <span>←</span>
-            <span>Back</span>
+            <span>Back to Academy</span>
           </Link>
         </div>
       </div>
@@ -29,39 +29,42 @@ export default function PathPage() {
       {/* Main Content */}
       <main className="relative z-10 container mx-auto py-16 sm:py-24">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter font-mono">
-              {course.title}
-            </h1>
-            <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-              {course.description}
-            </p>
-            <div className="mt-8 flex items-center justify-center space-x-8 text-sm">
-              <div className="flex items-center space-x-2 text-muted-foreground">
+          <div className="text-center space-y-8">
+            <div className="space-y-6">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight font-mono">
+                {course.title}
+              </h1>
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                {course.description}
+              </p>
+            </div>
+            
+            <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
+              <div className="flex items-center gap-2 text-muted-foreground">
                 <Clock className="w-4 h-4" />
                 <span>{course.totalDuration}</span>
               </div>
-              <div className="flex items-center space-x-2 text-muted-foreground">
+              <div className="flex items-center gap-2 text-muted-foreground">
                 <BookOpen className="w-4 h-4" />
                 <span>{course.modules.length} modules</span>
               </div>
-              <div className="flex items-center space-x-2 text-muted-foreground">
+              <div className="flex items-center gap-2 text-muted-foreground">
                 <Play className="w-4 h-4" />
                 <span>{course.modules.reduce((total, module) => total + module.lessons.length, 0)} lessons</span>
               </div>
             </div>
           </div>
 
-          <div className="mt-16 space-y-4">
-            {course.modules.map((module) => 
-              module.lessons.map((lesson, lessonIndex) => {
-                return (
+          <div className="mt-16">
+            <div className="grid gap-4">
+              {course.modules.map((module) => 
+                module.lessons.map((lesson, lessonIndex) => (
                   <Link 
                     key={lessonIndex} 
                     href={`/learn/${path}/${slugify(lesson.title)}`} 
-                    className="block p-6 bg-card/50 border rounded-2xl hover:bg-card/70 transition-colors group"
+                    className="group block p-6 bg-card/50 border rounded-xl hover:bg-card/70 transition-all duration-200"
                   >
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center gap-4">
                       <div className="flex-shrink-0">
                         {lesson.completed ? (
                           <CheckCircle className="w-6 h-6 text-green-500" />
@@ -70,21 +73,25 @@ export default function PathPage() {
                         )}
                       </div>
                       
-                      <div className="flex-1 min-w-0">
-                        <h3 className={`text-lg font-medium ${lesson.completed ? 'text-muted-foreground line-through' : 'text-foreground group-hover:text-destructive transition-colors'}`}>
+                      <div className="flex-1 space-y-1">
+                        <h3 className={`text-lg font-medium transition-colors ${
+                          lesson.completed 
+                            ? 'text-muted-foreground line-through' 
+                            : 'text-foreground group-hover:text-destructive'
+                        }`}>
                           {lesson.title}
                         </h3>
                         {lesson.resources && lesson.resources.length > 0 && (
-                          <p className="mt-2 text-sm text-muted-foreground">
+                          <p className="text-sm text-muted-foreground">
                             {lesson.resources.length} resource{lesson.resources.length > 1 ? 's' : ''} included
                           </p>
                         )}
                       </div>
                     </div>
                   </Link>
-                )
-              })
-            )}
+                ))
+              )}
+            </div>
           </div>
         </div>
       </main>
