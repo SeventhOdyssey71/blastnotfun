@@ -94,7 +94,7 @@
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
 		"eslint": "^9",
-		"eslint-config-next": "15.3.5",
+		"eslint-config-next": "15.3.9",
 		"minimist": "^1.2.8",
 		"prisma": "^6.17.1",
 		"tailwindcss": "^4",
