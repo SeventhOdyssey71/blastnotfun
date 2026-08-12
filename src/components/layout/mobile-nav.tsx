@@ -15,7 +15,7 @@ export function MobileNavigation() {
 	}
 
 	return (
-		<div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-t border-border/50">
+		<div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-xl border-t border-border pb-[env(safe-area-inset-bottom)]">
 			<nav className="flex justify-evenly items-center w-full h-16 px-2">
 				{navigationItems.filter(item => item.label !== "TOOLS").map((item) => {
 					const isActive = pathname === item.href
@@ -25,22 +25,30 @@ export function MobileNavigation() {
 						<Link
 							key={item.href}
 							href={item.href}
-							className="group flex flex-col justify-center items-center gap-1 py-2 px-4 min-w-0 relative"
+							aria-current={isActive ? "page" : undefined}
+							className="group relative flex flex-1 flex-col justify-center items-center gap-1.5 py-2 min-w-0"
 						>
+							{/* @dev: Active indicator rides the top edge of the bar */}
+							<span
+								className={cn(
+									"absolute -top-px h-0.5 w-8 rounded-full transition-opacity",
+									isActive ? "bg-destructive opacity-100" : "opacity-0"
+								)}
+							/>
 							<Icon
 								className={cn(
-									"h-5 w-5 transition-all duration-300",
-									isActive 
-										? "text-primary" 
-										: "text-muted-foreground/60 group-active:scale-95"
+									"h-5 w-5 transition-colors",
+									isActive
+										? "text-foreground"
+										: "text-muted-foreground group-active:scale-95"
 								)}
 							/>
 							<span
 								className={cn(
-									"text-[10px] font-mono uppercase tracking-wider transition-all duration-300",
-									isActive 
-										? "text-primary/90 font-semibold" 
-										: "text-muted-foreground/60"
+									"text-[10px] font-mono uppercase tracking-[0.08em] transition-colors",
+									isActive
+										? "text-foreground font-semibold"
+										: "text-muted-foreground"
 								)}
 							>
 								{item.label}

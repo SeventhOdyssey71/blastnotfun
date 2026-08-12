@@ -74,11 +74,11 @@ export const TokenCard = memo(function TokenCard({ pool: tokenData, hasRecentTra
 	return (
 		<Link href={`/token/${token.coinType}`} className="cursor-default">
 			<div
-				className={`group relative overflow-hidden border-border/40 border-b transition-all duration-300 hover:bg-accent/15 ${hasRecentTrade ? "animate-shake" : ""}`}
+				className={`group relative overflow-hidden border-border/60 border-b transition-colors duration-200 hover:bg-accent/40 ${hasRecentTrade ? "animate-shake" : ""}`}
 			>
 				{/* Content */}
-				<div className="relative p-3 sm:p-2">
-					<div className="flex items-center gap-3 sm:gap-2.5">
+				<div className="relative px-3 py-3 sm:px-4 sm:py-3.5">
+					<div className="flex items-center gap-3 sm:gap-3.5">
 						<div className="flex-shrink-0">
 							<div className="h-[48px] w-[48px] sm:h-[56px] sm:w-[56px]">
 								{/* avatar with conic progress */}
@@ -125,9 +125,9 @@ export const TokenCard = memo(function TokenCard({ pool: tokenData, hasRecentTra
 						</div>
 
 						{/* Content */}
-						<div className="flex-1 min-w-0 space-y-1">
+						<div className="flex-1 min-w-0 space-y-1.5">
 							<div className="flex items-center gap-2">
-								<h3 className="font-mono font-bold text-xs sm:text-sm uppercase tracking-wider text-foreground/90 truncate">
+								<h3 className="font-mono font-bold text-xs sm:text-sm uppercase tracking-wide text-foreground truncate">
 									{token.metadata?.name || tokenData.name || "[UNNAMED]"}
 								</h3>
 

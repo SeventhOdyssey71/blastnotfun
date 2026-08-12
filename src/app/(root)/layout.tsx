@@ -27,10 +27,11 @@ export default function Layout({
 			<Header />
 			<TokenTabsHeader />
 
-			<main className="flex-1 overflow-hidden pb-12">
+			{/* @dev: Bottom padding must clear the fixed bar below — 64px mobile nav, 48px desktop footer */}
+			<main className="flex-1 overflow-hidden pb-16 lg:pb-12">
 				{shouldHavePadding ? (
 					<div className={cn(
-						"h-full overflow-auto p-2"
+						"h-full overflow-auto px-3 py-3 sm:px-5 sm:py-4 lg:px-6 lg:py-5"
 					)}>
 						{children}
 					</div>

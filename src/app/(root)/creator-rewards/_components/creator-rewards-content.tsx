@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card"
 import { CreatorRewardsList } from "./creator-rewards-list"
 import { useCreatorRewards } from "../_hooks/use-creator-rewards"
 import { Loader2, RefreshCw, Coins } from "lucide-react"
+import { PageHeader } from "@/components/layout/page-header"
 
 export function CreatorRewardsContent() {
 	const { isConnected, setIsConnectDialogOpen } = useApp()
@@ -27,17 +28,15 @@ export function CreatorRewardsContent() {
 	}
 
 	return (
-		<div className="flex justify-center py-8 pb-20 sm:pb-8">
-			<div className="w-full max-w-4xl px-4">
-				<div className="mb-6 sm:mb-8">
-					<h1 className="mb-2 text-2xl font-bold sm:text-3xl">Creator Rewards</h1>
-					<p className="text-sm text-muted-foreground sm:text-base">
-						View and claim your creator rewards from liquidity positions
-					</p>
-				</div>
+		<div className="pb-20 sm:pb-8">
+			<div className="mx-auto w-full max-w-4xl">
+				<PageHeader
+					title="Creator Rewards"
+					description="View and claim your creator rewards from liquidity positions."
+				/>
 
 				{/* @dev: Stats card */}
-				<Card className="mb-6 p-4 sm:p-6">
+				<Card className="mb-5 p-4 sm:mb-6 sm:p-6">
 					<div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 						<div className="space-y-1">
 							<p className="text-sm text-muted-foreground">Total Unclaimed Rewards</p>

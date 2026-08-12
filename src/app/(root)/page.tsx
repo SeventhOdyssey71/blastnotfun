@@ -23,7 +23,7 @@ export default function DiscoveryPage() {
 
 	return (
 		<>
-			<div className="h-full grid grid-cols-1 lg:grid-cols-3 gap-4">
+			<div className="h-full grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5">
 				<NewlyCreated pollInterval={10000} />
 				<NearGraduation pollInterval={10000} />
 				<GraduatedComplete pollInterval={30000} />

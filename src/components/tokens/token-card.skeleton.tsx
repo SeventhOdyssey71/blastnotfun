@@ -4,9 +4,9 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 export function TokenCardSkeleton() {
 	return (
-		<div className="relative border-b border-border/40 group">
-			<div className="relative p-3 sm:p-2">
-				<div className="flex gap-3 sm:gap-2.5">
+		<div className="relative border-b border-border/60 group">
+			<div className="relative px-3 py-3 sm:px-4 sm:py-3.5">
+				<div className="flex gap-3 sm:gap-3.5">
 					{/* Avatar skeleton */}
 					<div className="flex-shrink-0">
 						<Skeleton className="h-[48px] w-[48px] sm:h-[56px] sm:w-[56px] rounded-md" />

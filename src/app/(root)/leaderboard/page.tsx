@@ -11,6 +11,7 @@ import { Logo } from "@/components/ui/logo"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useSuiNSNames } from "@/hooks/use-suins"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { PageContainer, PageHeader } from "@/components/layout/page-header"
 
 function LeaderboardContent() {
 	const router = useRouter()
@@ -219,10 +220,15 @@ function LeaderboardContent() {
 	}
 
 	return (
-		<div className="container max-w-7xl mx-auto py-4">
+		<PageContainer>
+			<PageHeader
+				title="Leaderboard"
+				description="Top traders ranked by volume and trade count."
+			/>
+
 			{/* Controls Section */}
-			<div className="flex justify-between items-center mb-3">
-				<div className="p-0.5 bg-card/50 backdrop-blur-sm border border-border/50 rounded-md flex items-center">
+			<div className="flex flex-wrap justify-between items-center gap-3 mb-4">
+				<div className="p-0.5 bg-card/50 backdrop-blur-sm border border-border rounded-md flex items-center">
 					{(['24h', '7d', '14d', 'all'] as const).map((range) => (
 						<button
 							key={range}
@@ -339,7 +345,7 @@ function LeaderboardContent() {
 			</div>
 
 			{/* Leaderboard Content */}
-			<div className="bg-card/50 border border-border/50 rounded-lg overflow-hidden">
+			<div className="bg-card/30 border border-border rounded-xl overflow-hidden shadow-surface">
 				{loading ? (
 					<div className="w-full">
 							<div className="relative">
@@ -530,21 +536,25 @@ function LeaderboardContent() {
 					</div>
 				)}
 			</div>
-		</div>
+		</PageContainer>
 	)
 }
 
 export default function LeaderboardPage() {
 	return (
 		<Suspense fallback={
-			<div className="container max-w-7xl mx-auto py-4">
-				<div className="bg-card/50 border border-border/50 rounded-lg">
+			<PageContainer>
+				<PageHeader
+					title="Leaderboard"
+					description="Top traders ranked by volume and trade count."
+				/>
+				<div className="bg-card/30 border border-border rounded-xl shadow-surface">
 					<div className="p-8 text-center">
 						<Logo className="w-12 h-12 mx-auto text-foreground/20 mb-4 animate-pulse" />
 						<p className="font-mono text-sm uppercase text-muted-foreground">LOADING::LEADERBOARD</p>
 					</div>
 				</div>
-			</div>
+			</PageContainer>
 		}>
 			<LeaderboardContent />
 		</Suspense>

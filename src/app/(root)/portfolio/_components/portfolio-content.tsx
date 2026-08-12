@@ -10,6 +10,7 @@ import { Loader2, Gift } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { RewardsDialog } from "@/components/dialogs/rewards.dialog"
 import { Logo } from "@/components/ui/logo"
+import { PageHeader } from "@/components/layout/page-header"
 
 export function PortfolioContent() {
 	const { address, isConnected, setIsConnectDialogOpen } = useApp()
@@ -46,7 +47,7 @@ export function PortfolioContent() {
 
 	if (!isConnected) {
 		return (
-			<div className="container max-w-6xl mx-auto px-4 py-8">
+			<div className="mx-auto w-full max-w-6xl">
 				<div className="flex flex-col items-center justify-center min-h-[60vh]">
 					<Logo className="w-12 h-12 mx-auto mb-4 text-foreground/20" />
 					<p className="font-mono text-sm uppercase tracking-wider text-muted-foreground">
@@ -69,7 +70,7 @@ export function PortfolioContent() {
 
 	if (isLoading && !portfolio) {
 		return (
-			<div className="container max-w-6xl mx-auto px-4 py-8">
+			<div className="mx-auto w-full max-w-6xl">
 				<div className="flex flex-col items-center justify-center min-h-[60vh]">
 					<Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
 					<p className="mt-4 font-mono text-sm uppercase tracking-wider text-muted-foreground">
@@ -85,7 +86,7 @@ export function PortfolioContent() {
 
 	if (error) {
 		return (
-			<div className="container max-w-6xl mx-auto px-4 py-8">
+			<div className="mx-auto w-full max-w-6xl">
 				<div className="flex flex-col items-center justify-center min-h-[60vh]">
 					<Logo className="w-12 h-12 mx-auto mb-4 text-destructive/20" />
 					<p className="font-mono text-sm uppercase tracking-wider text-destructive">
@@ -100,28 +101,23 @@ export function PortfolioContent() {
 	}
 
 	return (
-		<div className="container max-w-6xl mx-auto px-4 py-8">
+		<div className="mx-auto w-full max-w-6xl">
 			<div className="space-y-6">
-				<div className="flex flex-col gap-4">
-					<div className="flex items-center justify-between">
-						<div>
-							<h1 className="font-mono text-2xl font-bold uppercase tracking-wider text-foreground/80">
-								PORTFOLIO TRACKER
-							</h1>
-							<p className="font-mono text-xs uppercase tracking-wider text-muted-foreground/60 mt-1">
-								MONITOR HOLDINGS AND PERFORMANCE
-							</p>
-						</div>
+				<PageHeader
+					title="Portfolio"
+					description="Monitor your holdings and performance."
+					className="mb-0"
+					actions={
 						<Button
 							onClick={() => setIsRewardsOpen(true)}
 							variant="outline"
-							className="font-mono uppercase tracking-wider flex items-center gap-2 border-2"
+							className="font-mono uppercase tracking-wider flex items-center gap-2"
 						>
 							<Gift className="h-4 w-4" />
 							CLAIM REWARDS
 						</Button>
-					</div>
-				</div>
+					}
+				/>
 
 				{portfolio && (
 					<>

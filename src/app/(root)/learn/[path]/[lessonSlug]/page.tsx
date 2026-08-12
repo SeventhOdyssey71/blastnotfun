@@ -17,8 +17,8 @@ const findLesson = (path: string, lessonSlug: string): LessonResult | null => {
   const course = academyData[path as keyof typeof academyData]
   if (!course) return null
 
-  for (const module of course.modules) {
-    const lesson = module.lessons.find(l => slugify(l.title) === lessonSlug)
+  for (const courseModule of course.modules) {
+    const lesson = courseModule.lessons.find(l => slugify(l.title) === lessonSlug)
     if (lesson) {
       return { lesson, course }
     }
